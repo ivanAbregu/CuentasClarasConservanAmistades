@@ -13,3 +13,5 @@
 
 * Then you can access to http://localhost
 
+#### Run tests:
+sh runtests.sh
