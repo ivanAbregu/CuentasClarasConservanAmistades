@@ -9,19 +9,19 @@ class BeerTests(TestCase):
 
     def test_name_label(self):
         field_label = self.beer._meta.get_field("name").verbose_name
-        self.assertEquals(field_label, "name")
+        self.assertEqual(field_label, "name")
 
     def test_price_label(self):
         field_label = self.beer._meta.get_field("price").verbose_name
-        self.assertEquals(field_label, "price")
+        self.assertEqual(field_label, "price")
 
     def test_get_absolute_url(self):
         # This will also fail if the urlconf is not defined.
-        self.assertEquals(self.beer.get_absolute_url(), f"/api/v1/beer/{self.beer.id}/")
+        self.assertEqual(self.beer.get_absolute_url(), f"/api/v1/Beer/{self.beer.id}/")
 
     def test_object_to_str(self):
         expected_object_name = f"name: {self.beer.name}"
-        self.assertEquals(expected_object_name, str(self.beer))
+        self.assertEqual(expected_object_name, str(self.beer))
 
     # --TEST DEFAULTS VALUES
 

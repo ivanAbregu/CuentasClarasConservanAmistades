@@ -3,14 +3,11 @@ from django.test import TestCase
 from apps.beer.api.v1.serializers import BeerSerializer
 from apps.beer.models import Beer
 
-User = get_user_model()
-
 
 class BeerSerializerTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        fake = Faker()
         beer = Beer.objects.create(name="IPA", price=100)
         cls.serializer = BeerSerializer(beer)
 
