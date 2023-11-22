@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # API
     path("api/v1/", include("apps.beer.api.v1.urls")),
+    path("api/v1/", include("apps.order.api.v1.urls")),
 ]

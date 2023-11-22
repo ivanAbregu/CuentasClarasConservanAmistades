@@ -4,6 +4,6 @@ from .views import BeerViewSet
 
 router = SimpleRouter()
 
-router.register("Beer", BeerViewSet)
+router.register("beer", BeerViewSet)
 
 urlpatterns = router.urls

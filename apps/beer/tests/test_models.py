@@ -17,7 +17,7 @@ class BeerTests(TestCase):
 
     def test_get_absolute_url(self):
         # This will also fail if the urlconf is not defined.
-        self.assertEqual(self.beer.get_absolute_url(), f"/api/v1/Beer/{self.beer.id}/")
+        self.assertEqual(self.beer.get_absolute_url(), f"/api/v1/beer/{self.beer.id}/")
 
     def test_object_to_str(self):
         expected_object_name = f"name: {self.beer.name}"

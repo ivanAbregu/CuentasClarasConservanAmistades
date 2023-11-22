@@ -13,7 +13,7 @@ class BeerViewSet(ModelViewSet):
         Return a list of all the existing Beers.
 
         create:
-        Create a new Beer instance associated with the authenticated user.
+        Create a new Beer instance.
 
         update:
         Update a Beer instance

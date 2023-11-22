@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 class Beer(models.Model):
     name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(default=100)
 
     def __str__(self) -> str:
         return f"name: {self.name}"
