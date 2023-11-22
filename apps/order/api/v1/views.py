@@ -23,7 +23,8 @@ class OrderViewSet(ModelViewSet):
         Return a list of all the existing Orders.
 
         create:
-        Create a new Order.
+        Create a new Order. Recieve as param a dic of usename with a dic of beers wih the amount
+        example: {"ivan": {"red":4, "ipa":3},"pedro": {"blonde":1}}
 
         update:
         Update a Order instance
