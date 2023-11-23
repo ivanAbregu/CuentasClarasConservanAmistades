@@ -83,8 +83,6 @@ class OrderTests(APITestCase):
         Ensure we can get an account
         """
         url = reverse('order-list')
-
-        print("ACA", )
         red = 'red'
         ipa = 'ipa'
         blonde = 'blonde'
@@ -102,3 +100,53 @@ class OrderTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('total'), 1200)
         self.assertEqual(response.data.get('is_paid'), False)
+
+
+class PaymentTests(APITestCase):
+    def test_pay_equal(self):
+        """
+        Ensure we can paid an account equally
+        """
+
+        red = 'red'
+        ipa = 'ipa'
+        blonde = 'blonde'
+        user1 = 'Ivan'
+        user2 = 'Pedro'
+        user3 = 'Gaspar'
+        data = {
+            user1:{red:2, ipa:3},
+            user2:{blonde:1},
+            user3:{red:1, ipa:2, blonde:3},
+        }
+        response = self.client.post(reverse('order-list'), data, format='json')
+        order_id = response.data.get('id')
+
+        response = self.client.post(reverse('payment-equals'),{'order_id': order_id}, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Order.objects.get(pk=order_id).is_paid, True)
+
+    def test_pay_by_consume(self):
+        """
+        Ensure we can paid an account by consume each one
+        """
+
+        red = 'red'
+        ipa = 'ipa'
+        blonde = 'blonde'
+        user1 = 'Ivan'
+        user2 = 'Pedro'
+        user3 = 'Gaspar'
+        data = {
+            user1:{red:2, ipa:3},
+            user2:{blonde:1},
+            user3:{red:1, ipa:2, blonde:3},
+        }
+        response = self.client.post(reverse('order-list'), data, format='json')
+        order_id = response.data.get('id')
+
+        response = self.client.post(reverse('payment-by-consume'),{'order_id': order_id}, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Order.objects.get(pk=order_id).is_paid, True)
